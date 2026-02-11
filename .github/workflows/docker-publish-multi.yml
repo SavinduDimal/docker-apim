@@ -128,9 +128,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      with:
-        repository: wso2/docker-apim
-        ref: master
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -157,7 +154,7 @@ jobs:
         context: dockerfiles/${{ matrix.os }}/${{ matrix.component }}
         file: dockerfiles/${{ matrix.os }}/${{ matrix.component }}/Dockerfile
         platforms: ${{ github.event.inputs.platforms }}
-        push: true
+        push: false
         tags: ${{ steps.prep-tags.outputs.tags }}
         build-args: |
           WSO2_SERVER_DIST_URL=${{ matrix.product_zip_file }}

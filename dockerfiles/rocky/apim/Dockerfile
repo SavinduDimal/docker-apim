@@ -22,7 +22,6 @@ FROM rockylinux:9.3
 # Install necessary locale packages
 RUN yum clean all && \
     yum makecache && \
-    yum -y update && \
     yum install -y --nobest glibc-langpack-en langpacks-en glibc-locale-source && \
     localedef -c -f UTF-8 -i en_US en_US.UTF-8
 
@@ -83,7 +82,7 @@ ARG WSO2_SERVER_REPOSITORY=product-apim
 ARG WSO2_SERVER=${WSO2_SERVER_NAME}-${WSO2_SERVER_VERSION}
 ARG WSO2_SERVER_ZIP=${WSO2_SERVER_NAME}-${WSO2_SERVER_ZIP_VERSION}
 ARG WSO2_SERVER_HOME=${USER_HOME}/${WSO2_SERVER}
-ARG WSO2_SERVER_DIST_URL=https://github.com/wso2/${WSO2_SERVER_REPOSITORY}/releases/download/v${WSO2_SERVER_ZIP_VERSION}/${WSO2_SERVER_ZIP}.zip
+ARG WSO2_SERVER_DIST_URL=http://host.docker.internal:8000/wso2am-4.6.0.zip
 # build argument for MOTD
 ARG MOTD='printf "\n\
 Welcome to WSO2 Docker resources.\n\
