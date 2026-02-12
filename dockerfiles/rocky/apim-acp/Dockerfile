@@ -28,7 +28,8 @@ RUN yum clean all && \
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 # install dependencies
-RUN yum install -y tzdata openssl ca-certificates fontconfig gzip tar nc unzip wget \
+RUN yum install -y tzdata openssl ca-certificates fontconfig gzip tar nmap-ncat unzip wget binutils \
+    && yum install -y --allowerasing curl \
     && yum clean all
 
 ENV JAVA_VERSION=jdk-21.0.5+11
